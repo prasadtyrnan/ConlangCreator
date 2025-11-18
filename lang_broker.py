@@ -36,6 +36,7 @@ translator = Translator()
 translator_loop = asyncio.new_event_loop()
 
 def remove_accents(text):
+    print(text)
     nfd_form = unicodedata.normalize('NFD', text)
     stripped_string = "".join(char for char in nfd_form if not unicodedata.combining(char))
     return stripped_string
@@ -49,10 +50,12 @@ def translate(text, dest='es'):
     else:
         output = asyncio.run(translator.translate(text, src='en', dest=dest))
 
-    if output.pronunciation != text:
-        return remove_accents(output.pronunciation)
+    translated_text = output.text
+    pronunciation = output.pronunciation
+    if pronunciation != text and not pronunciation is None:
+        return remove_accents(pronunciation)
 
-    return remove_accents(output.text)
+    return remove_accents(translated_text)
 
 def load_vocab_csv(filepath):
     vocab_mapper = {}

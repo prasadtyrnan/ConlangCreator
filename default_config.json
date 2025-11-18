@@ -1,7 +1,7 @@
 {
     "base_language_code" : "es",
-    "permutation_minimum" : 2,
-    "permutation_maximum" : 5,
+    "permutation_minimum" : 1,
+    "permutation_maximum" : 3,
     "enforce_permutation" : true,
     "permutation_configurations" : {
         "syncope" : {
